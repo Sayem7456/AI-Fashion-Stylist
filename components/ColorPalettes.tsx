@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { ColorPalette } from '../types';
 import LoadingSpinner from './LoadingSpinner';
+import { DownloadIcon } from './icons/DownloadIcon';
 
 interface ColorPalettesProps {
   palettes: ColorPalette[];
@@ -41,14 +41,25 @@ const ColorPalettes: React.FC<ColorPalettesProps> = ({ palettes, onTryOn, loadin
             </div>
           ))}
         </div>
-        <div className="md:w-1/2 aspect-square bg-gray-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-lg">
+        <div className="relative group md:w-1/2 aspect-square bg-gray-700/50 rounded-lg flex items-center justify-center overflow-hidden shadow-lg">
           {loading ? (
             <div>
               <LoadingSpinner />
               <p className="mt-2 text-sm text-gray-400">Generating outfit...</p>
             </div>
           ) : outfitImage ? (
-            <img src={outfitImage} alt="Virtual outfit try-on" className="w-full h-full object-cover animate-fade-in" />
+            <>
+              <img src={outfitImage} alt="Virtual outfit try-on" className="w-full h-full object-cover animate-fade-in" />
+              <a
+                href={outfitImage}
+                download="outfit-try-on.png"
+                className="absolute bottom-2 right-2 bg-black/50 p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                aria-label="Download outfit image"
+                title="Download Image"
+              >
+                <DownloadIcon />
+              </a>
+            </>
           ) : (
             <p className="text-gray-400 text-center p-4">Select a palette to see a virtual try-on of an outfit.</p>
           )}

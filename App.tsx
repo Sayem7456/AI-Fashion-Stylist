@@ -51,7 +51,7 @@ const App: React.FC = () => {
       setAnalysisResult(analysis);
       setLoading(prev => ({ ...prev, isAnalyzing: false }));
 
-      const generatedHairstyles = await generateHairstyles(base64Data, analysis.faceShape);
+      const generatedHairstyles = await generateHairstyles(base64Data, analysis.faceShape, analysis.gender);
       setHairstyles(generatedHairstyles);
       
       setAppState(AppState.Results);
@@ -65,7 +65,7 @@ const App: React.FC = () => {
   }, [uploadedImage]);
 
   const handleTryOnOutfit = useCallback(async (palette: ColorPalette) => {
-    if (!uploadedImage) return;
+    if (!uploadedImage || !analysisResult) return;
 
     setLoading(prev => ({ ...prev, isGeneratingOutfit: true }));
     setError(null);
@@ -73,7 +73,7 @@ const App: React.FC = () => {
 
     try {
       const base64Data = uploadedImage.split(',')[1];
-      const image = await generateOutfit(base64Data, palette);
+      const image = await generateOutfit(base64Data, palette, analysisResult.gender);
       setOutfitImage(image);
     } catch (err) {
       console.error(err);
@@ -81,7 +81,7 @@ const App: React.FC = () => {
     } finally {
       setLoading(prev => ({ ...prev, isGeneratingOutfit: false }));
     }
-  }, [uploadedImage]);
+  }, [uploadedImage, analysisResult]);
 
   const isLoading = loading.isAnalyzing || loading.isGeneratingHairstyles;
 

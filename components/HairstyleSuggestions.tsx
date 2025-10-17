@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { DownloadIcon } from './icons/DownloadIcon';
 
 interface HairstyleSuggestionsProps {
   hairstyles: string[];
@@ -15,9 +15,20 @@ const HairstyleSuggestions: React.FC<HairstyleSuggestionsProps> = ({ hairstyles,
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {(loading ? Array(4).fill(null) : hairstyles).map((hairstyle, index) => (
-          <div key={index} className="aspect-square bg-gray-700/50 rounded-lg overflow-hidden shadow-lg animate-fade-in">
+          <div key={index} className="relative group aspect-square bg-gray-700/50 rounded-lg overflow-hidden shadow-lg animate-fade-in">
             {hairstyle ? (
-              <img src={hairstyle} alt={`Hairstyle suggestion ${index + 1}`} className="w-full h-full object-cover" />
+              <>
+                <img src={hairstyle} alt={`Hairstyle suggestion ${index + 1}`} className="w-full h-full object-cover" />
+                <a
+                  href={hairstyle}
+                  download={`hairstyle-suggestion-${index + 1}.png`}
+                  className="absolute bottom-2 right-2 bg-black/50 p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                  aria-label={`Download hairstyle suggestion ${index + 1}`}
+                  title="Download Image"
+                >
+                  <DownloadIcon />
+                </a>
+              </>
             ) : (
               <div className="w-full h-full bg-gray-700 animate-pulse"></div>
             )}

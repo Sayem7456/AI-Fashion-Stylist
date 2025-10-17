@@ -6,6 +6,7 @@ export interface ColorPalette {
 
 export interface AnalysisResult {
   faceShape: string;
+  gender: string;
   colorPalettes: ColorPalette[];
 }
 
