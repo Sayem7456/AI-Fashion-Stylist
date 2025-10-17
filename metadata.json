@@ -1,0 +1,5 @@
+{
+  "name": "AI Fashion Stylist",
+  "description": "An AI-powered fashion assistant that analyzes your face shape to suggest hairstyles and recommends clothing color palettes based on your skin tone. Features virtual try-on for both hairstyles and outfits.",
+  "requestFramePermissions": []
+}
