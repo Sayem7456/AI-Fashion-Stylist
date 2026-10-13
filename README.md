@@ -1,20 +1,92 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AI Fashion Stylist
 
-# Run and deploy your AI Studio app
+A React + TypeScript app that lets users upload a portrait and receive personalized fashion recommendations powered by Google Gemini.
 
-This contains everything you need to run your app locally.
+The app analyzes the uploaded face, identifies face shape and gender, suggests flattering hairstyle options, and generates color palettes with virtual outfit try-on previews.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1VlSQFouZiuTOieITq3Hd1p_p9eH_k2zX
+## Features
 
-## Run Locally
+- Upload a portrait image
+- Detect face shape and gender
+- Recommend complementary hairstyle concepts
+- Generate fashion color palettes based on skin tones and appearance
+- Render outfit suggestions using AI-generated visual try-ons
+- Modern dark UI with responsive layout
 
-**Prerequisites:**  Node.js
+## Tech Stack
 
+- React 19
+- TypeScript
+- Vite
+- Google Gemini AI
+
+## Project Structure
+
+```text
+.
+├── App.tsx
+├── components/
+│   ├── ColorPalettes.tsx
+│   ├── HairstyleSuggestions.tsx
+│   ├── ImageUploader.tsx
+│   ├── LoadingSpinner.tsx
+│   └── icons/
+├── services/
+│   └── geminiService.ts
+├── index.html
+├── index.tsx
+├── metadata.json
+├── package.json
+├── tsconfig.json
+├── types.ts
+├── vite.config.ts
+└── README.md
+```
+
+## Prerequisites
+
+- Node.js 18+
+- npm
+- A Google Gemini API key
+
+## Local Setup
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+
+```bash
+npm install
+```
+
+2. Create a `.env.local` file in the project root and add your Gemini API key:
+
+```env
+API_KEY=your_gemini_api_key_here
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+4. Open the app in your browser at:
+
+```text
+http://localhost:5173
+```
+
+## Available Scripts
+
+```bash
+npm run dev     # start the local Vite dev server
+npm run build   # build the production bundle
+npm run preview # preview the production build locally
+```
+
+## Notes
+
+This project relies on Gemini for image analysis and image generation. Make sure your API key has access to the required models used in `services/geminiService.ts`.
+
+## License
+
+This project is currently unlicensed.
